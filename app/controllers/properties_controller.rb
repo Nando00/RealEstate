@@ -1,6 +1,7 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_account!, only: [:new,:create,:destroy]
+  before_action :set_sidebar, except: [:show]
   # GET /properties
   # GET /properties.json
   def index
@@ -10,6 +11,8 @@ class PropertiesController < ApplicationController
   # GET /properties/1
   # GET /properties/1.json
   def show
+    @agent = @property.account
+    @agent_properties = Property.where(account_id: @agent.id).where.not(id: @property.id)
   end
 
   # GET /properties/new
@@ -62,14 +65,33 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def email_agent
+    #trigger email
+    agent_id  = params[:agent_id]
+    first_name= params[:first_name]
+    last_name = params[:last_name]
+    email     = params[:email]
+    message   = params[:message]
+
+ContactMailer.email_agent(agent_id, first_name, last_name, email, message).deliver_now
+
+    #response to script
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property
       @property = Property.find(params[:id])
     end
-
+    def set_sidebar
+      @show_sidebar = true
+    end
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:account, :name, :address, :rooms, :bathrooms,:photo,:photo_cache)
+      params.require(:property).permit( :name, :address, :rooms, :bathrooms,:parking_spaces,:price,:parking_spaces,:details,:photo,:photo_cache,:for_sale,:available_date)
     end
 end

@@ -1,5 +1,5 @@
 <main role="main">
-
+<link href='@fortawesome/fontawesome-free/css/all.css' rel="stylesheet">
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron">
     <div class="container">
@@ -9,6 +9,15 @@
     </div>
   </div>
 
+  <section id = "latest-properties" class="mb-5">
+  <div class="container">
+    <div class="row">
+        <%= render "properties/list", properties: @properties%>
+      </div>
+    </div>
+  </section>
+
+  
   <div class="container">
     <!-- Example row of columns -->
     <div class="row">

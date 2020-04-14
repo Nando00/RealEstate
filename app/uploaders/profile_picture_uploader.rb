@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'carrierwave/processing/mime_types'
-class PhotoUploader < CarrierWave::Uploader::Base
+class ProfilePictureUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

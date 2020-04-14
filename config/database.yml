@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: property_find_production
-  username: property_find
-  password: <%= ENV['PROPERTY_FIND_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_URL'] %>
+  #username: property_find
+  #password: <%= ENV['PROPERTY_FIND_DATABASE_PASSWORD'] %>

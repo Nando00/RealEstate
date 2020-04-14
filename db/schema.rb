@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_005855) do
+ActiveRecord::Schema.define(version: 2020_04_09_002824) do
 
   create_table "accounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "first_name", default: "", null: false
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 2020_02_29_005855) do
     t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
+    t.string "company"
+    t.string "telephone"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
@@ -43,8 +46,13 @@ ActiveRecord::Schema.define(version: 2020_02_29_005855) do
     t.integer "rooms"
     t.integer "bathrooms"
     t.string "photo"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "parking_spaces", default: 0
+    t.text "details"
+    t.boolean "for_sale", default: true
+    t.datetime "available_date"
     t.index ["account_id"], name: "index_properties_on_account_id"
   end
 

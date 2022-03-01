@@ -30,7 +30,7 @@ gem 'carrierwave', '~> 0.10.0'
 gem 'fog', '~> 1.37.0'
 gem 'fog-aws'
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 gem 'mini_magick'
 #gem is for AWS s3
 gem 'aws-sdk', '~> 3.0', '>= 3.0.1'
